@@ -4,6 +4,9 @@ namespace Neo.SmartContract.Framework.Services.Neo
 {
     public static class Helper
     {
+        [Syscall("Neo.Account.IsStandard")]
+        public extern static bool AccountIsStandard(byte[] scripthash);
+        
         public static StorageMap CreateMap(this StorageContext context, string prefix)
         {
             return new StorageMap
