@@ -7,12 +7,12 @@ namespace Neo.SmartContract.Framework
     public class OpCode2Attribute : Attribute
     {
         public OpCode OpCodeX { get; }
-        public byte OpCodeY { get; }
+        public OpCode OpCodeY { get; }
 
-        public OpCode2Attribute(OpCode opcode, byte x)
+        public OpCode2Attribute(params OpCode[] opcodes)
         {
-            this.OpCodeX = opcode;
-            this.OpCodeY = x;
+            this.OpCodeX = opcodes[0];
+            this.OpCodeY = opcodes[1];
         }
     }
 }
