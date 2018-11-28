@@ -9,10 +9,10 @@ namespace Neo.SmartContract.Framework
         public OpCode OpCodeX { get; }
         public byte OpCodeY { get; }
 
-        public OpCodeAttribute(OpCode opcode)
+        public OpCodeAttribute(OpCode opcode, byte x)
         {
             this.OpCodeX = opcode;
-            this.OpCodeY = (byte)10;
+            this.OpCodeY = x;
         }
     }
 }
