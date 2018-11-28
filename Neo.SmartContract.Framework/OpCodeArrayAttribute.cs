@@ -6,9 +6,9 @@ namespace Neo.SmartContract.Framework
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor)]
     public class OpCodeArrayAttribute : Attribute
     {
-        public byte[] vOpCode { get; }
+        public OpCode[] vOpCode { get; }
 
-        public OpCodeArrayAttribute(byte[] vopcode)
+        public OpCodeArrayAttribute(OpCode[] vopcode)
         {
             this.vOpCode = vopcode;
         }
