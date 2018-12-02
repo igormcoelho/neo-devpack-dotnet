@@ -3,46 +3,22 @@ using System;
 
 namespace Neo.SmartContract.Framework
 {
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor)]
-    public class InlineAttribute : Attribute
-    {
-        public OpExt[] Operations { get; }
-
-        public InlineAttribute(params OpExt[] ops)
-        {
-            this.Operations = ops;
-        }
-    }
-
     // OpCode with Extension parameters
-    public class OpExt
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor, AllowMultiple = true)]
+    public sealed class InlineAttribute : Attribute
     {
-        public OpCode Code; // unused
-        public byte[] Parameters; // unused
-        public string SParameters; // unused
+        // opcode id
+        public OpCode op { get; }
+        // extension of opcode
+        public string ext { get; }
+        // if extension is Hex or Char
+        public bool isHex { get; }
 
-        public OpExt(OpCode Code, byte[] Parameters = null)
+        public InlineAttribute(OpCode op, string extension = "", bool isHex = false)
         {
-            this.Code = Code;
-            this.Parameters = Parameters;
-            this.SParameters = null;
-        }
-
-        public OpExt(string call)
-        {
-            this.Code = OpCode.SYSCALL;
-            this.Parameters = null;
-            this.SParameters = call;
-        }
-
-        public static implicit operator OpExt(OpCode code)
-        {
-            return new OpExt(code);
-        }
-
-        public static implicit operator OpExt(string call)
-        {
-            return new OpExt(call);
+            this.op = op;
+            this.ext = extension;
+            this.isHex = isHex;
         }
     }
 }
